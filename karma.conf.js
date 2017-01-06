@@ -2,7 +2,7 @@
 // https://karma-runner.github.io/0.13/config/configuration-file.html
 
 module.exports = function (config) {
-  config.set({
+  var configuration = {
     basePath: '',
     frameworks: ['jasmine', 'angular-cli'],
     plugins: [
@@ -38,6 +38,21 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
+    customLaunchers: {
+        ChromeTravisCi: {
+            base: 'Chrome',
+            flags: ['--no-sandbox']
+        }
+    },
     singleRun: false
-  });
+  };
+
+  if (process.env.TRAVIS){
+      configuration.browsers = [
+          'ChromeTravisCi'
+      ];
+  }
+
+  config.set(configuration);
+
 };
