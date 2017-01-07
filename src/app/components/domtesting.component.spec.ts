@@ -55,20 +55,16 @@ describe('DomTestingComponent', () => {
     it('clicking the button should toggle visiblity', async(() => {
         let button = fixture.debugElement.query(By.css('button'));
 
-        expect(fixture.debugElement.query(By.css('.container'))).toBeNull()
+        expect(fixture.debugElement.query(By.css('.container'))).toBeNull();
 
-        button.nativeElement.click();
+        button.triggerEventHandler('click', <Event>{});
         fixture.detectChanges();
-        fixture.whenStable().then(() => {
-            expect(fixture.debugElement.query(By.css('.container'))).not.toBeNull();
+        expect(fixture.debugElement.query(By.css('.container'))).not.toBeNull();
 
-            button.nativeElement.click();
-            fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                expect(fixture.debugElement.query(By.css('.container'))).toBeNull();
-            });
-        });
+        button.triggerEventHandler('click', <Event>{});
+        fixture.detectChanges();
 
+        expect(fixture.debugElement.query(By.css('.container'))).toBeNull();
     }));
 
 });
