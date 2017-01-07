@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-
 import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -24,9 +23,9 @@ describe('EventEmitterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventEmitterComponent ]
+      declarations: [EventEmitterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
