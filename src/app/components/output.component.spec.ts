@@ -9,7 +9,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   selector: 'test',
   template: `<button (click)="greet.emit('Hi Juri')">Do greet</button>`
 })
-export class EventEmitterComponent {
+export class OutputComponent {
   @Output() greet: EventEmitter<string> = new EventEmitter<string>();
 
   doGreet() {
@@ -17,19 +17,19 @@ export class EventEmitterComponent {
   }
 }
 
-describe('EventEmitterComponent', () => {
-  let component: EventEmitterComponent;
-  let fixture: ComponentFixture<EventEmitterComponent>;
+describe('OutputComponent', () => {
+  let component: OutputComponent;
+  let fixture: ComponentFixture<OutputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EventEmitterComponent]
+      declarations: [OutputComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventEmitterComponent);
+    fixture = TestBed.createComponent(OutputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
