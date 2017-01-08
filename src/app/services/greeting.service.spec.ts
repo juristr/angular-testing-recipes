@@ -4,7 +4,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class GreetingService {
+class GreetingService {
   sayHi(name: string) {
     return `Hi, ${name}`;
   }

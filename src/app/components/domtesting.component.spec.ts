@@ -13,7 +13,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
     <button (click)="isVisible = !isVisible">toggle</button>
   `
 })
-export class DomTestingComponent {
+class DomTestingComponent {
     isVisible: boolean = false;
 }
 

@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
   selector: 'test',
   template: `{{ message }}`
 })
-export class InputComponent {
+class InputComponent {
   @Input() message: string;
 }
 

@@ -4,7 +4,7 @@ import { TestBed, async, fakeAsync, inject, tick } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class AsyncService {
+class AsyncService {
   simpleAsync() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {

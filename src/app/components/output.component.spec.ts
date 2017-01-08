@@ -9,7 +9,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   selector: 'test',
   template: `<button (click)="doGreet()">Do greet</button>`
 })
-export class OutputComponent {
+class OutputComponent {
   @Output() greet: EventEmitter<string> = new EventEmitter<string>();
 
   doGreet() {

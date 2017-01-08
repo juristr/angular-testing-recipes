@@ -18,7 +18,7 @@ class CollapsiblePanel{}
         <my-collapsible-panel></my-collapsible-panel>
   `
 })
-export class NestedComponentTesting {}
+class NestedComponentTesting {}
 
 describe('NestedComponentTesting', () => {
 
