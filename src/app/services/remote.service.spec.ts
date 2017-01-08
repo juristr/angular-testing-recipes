@@ -3,7 +3,7 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 import { Http, HttpModule, XHRBackend, Response, ResponseOptions } from '@angular/http';
-import {MockBackend} from '@angular/http/testing';
+import {MockBackend, MockConnection} from '@angular/http/testing';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -21,7 +21,7 @@ export class RemoteService {
 
 describe('RemoteService', () => {
     let service: RemoteService;
-    let mockBackend: MockBackend;
+    let mockBackend;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -43,8 +43,8 @@ describe('RemoteService', () => {
     });
 
     it('should return the json', async(() => {
-        mockBackend.connections.subscribe(connection => {
-            connection.mockRespond(new Response(new ResponseOptions('{ "name": "Juri" }')));
+        mockBackend.connections.subscribe((conn:MockConnection) => {
+            conn.mockRespond(new Response(new ResponseOptions('{ "name": "Juri" }')));
         });
 
         service.fetchViaHttp().subscribe((data) => {
