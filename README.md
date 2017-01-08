@@ -2,13 +2,9 @@
 
 [![Build Status](https://travis-ci.org/juristr/angular-testing-recipes.svg?branch=master)](https://travis-ci.org/juristr/angular-testing-recipes)
 
-<div style="border:1px solid #faebcc; border-radius:4px; padding:5px; color:#8a6d3b; background-color: #fcf8e3; margin-bottom:10px">
-    This repository is for Angular version 2+. <a href="https://juristr.com/blog/2016/12/let-me-explain-angular-release-cycles/" target="_blank">More &raquo;</a>
-</div>
+> This repo is for **Angular version 2+**. [More &raquo;](https://juristr.com/blog/2016/12/let-me-explain-angular-release-cycles/)
 
-<div style="border:1px solid #ebccd1; border-radius:4px; padding:5px; color:#a94442; background-color: #f2dede; margin-bottom:10px">
-    This is still a <i>work in progress</i> wherefore the repository structure might still change heavily. I'm happy for every contribution/suggestion. Just open an issue or send me a PR :)
-</div>
+**This is still a <i>work in progress</i> wherefore the repository structure might still change heavily. I'm happy for every contribution/suggestion. Just open an issue or send me a PR :)**
 
 ## Contents
 
