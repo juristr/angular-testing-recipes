@@ -30,6 +30,8 @@ _WIP: this repository is still a work in  progress_
     _Learn how to test async operations using the `async()` as well as `fakeAsync()` functions._
     - [Mocking and remote http calls]('./app/services/remote.service.spec.ts)  
     _Learn how to mock external dependencies, such as use the `MockBackend` provided by Angular to respond to http calls._
+1. [**Custom Matchers and Utilities**](./app/utils)
+    - [Create your own custom Jasmine matchers](./app/utils/custom-matchers.ts)
 
 ## Contribute
 
