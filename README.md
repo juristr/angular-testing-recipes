@@ -4,9 +4,11 @@
 
 > This repo is for **Angular version 2+**. [More &raquo;](https://juristr.com/blog/2016/12/let-me-explain-angular-release-cycles/)
 
+_WIP: this repository is still a work in  progress. If u wanna help just send a PR._
+
 ## Contents
 
-_WIP: this repository is still a work in  progress_
+All the scenarios are listed here below and nicely linked to the source file.
 
 1. [**Testing Components**](./src/app/components)
     - [testing @Input](./src/app/components/input.component.spec.ts)  
@@ -32,6 +34,16 @@ _WIP: this repository is still a work in  progress_
     _Learn how to mock external dependencies, such as use the `MockBackend` provided by Angular to respond to http calls._
 1. [**Custom Matchers and Utilities**](./app/utils)
     - [Create your own custom Jasmine matchers](./app/utils/custom-matchers.ts)
+
+## Run them yourself
+
+If you want to run the example locally,
+
+1. clone this repository
+1. Run `npm install`
+1. Run `npm test` to execute all the tests
+
+By running `npm run test.watch` you can run the tests in watch mode which is particularly useful during development.
 
 ## Contribute
 
