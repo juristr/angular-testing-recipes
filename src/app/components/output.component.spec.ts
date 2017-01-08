@@ -7,7 +7,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'test',
-  template: `<button (click)="greet.emit('Hi Juri')">Do greet</button>`
+  template: `<button (click)="doGreet()">Do greet</button>`
 })
 export class OutputComponent {
   @Output() greet: EventEmitter<string> = new EventEmitter<string>();
@@ -44,7 +44,7 @@ describe('OutputComponent', () => {
     const button = fixture.nativeElement.querySelector('button');
     button.click();
 
-    expect(component.greet.emit).toHaveBeenCalledWith('Hi Juri');
+    expect(component.greet.emit).toHaveBeenCalledWith('Hi');
   });
 
   it('should test the emitter with a simple subscribe', async(() => {
@@ -53,7 +53,14 @@ describe('OutputComponent', () => {
     });
 
     component.doGreet();
+  }));
 
+  it('should fire the event emitter when triggering an event', async(() => {
+    component.greet.subscribe((d) => {
+      expect(d).toBe('Hi');
+    });
+
+    fixture.debugElement.triggerEventHandler('greet', <Event>{});
   }));
 
 });
