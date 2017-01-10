@@ -35,6 +35,11 @@ All the scenarios are listed here below and nicely linked to the source file.
 1. [**Custom Matchers and Utilities**](./app/utils)
     - [Create your own custom Jasmine matchers](./app/utils/custom-matchers.ts)
 
+## Articles on Testing
+
+- [:notebook: Angular 2 Testing Guide by Gerard Sans](https://medium.com/google-developer-experts/angular-2-testing-guide-a485b6cb1ef0)
+- [:notebook: Three Ways to Test Angular 2 Components by Victor Savkin](https://vsavkin.com/three-ways-to-test-angular-2-components-dcea8e90bd8d#.hif9f24b5)
+
 ## Run them yourself
 
 If you want to run the example locally,
