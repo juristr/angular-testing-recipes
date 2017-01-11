@@ -38,7 +38,8 @@ All the scenarios are listed here below and nicely linked to the source file.
 ## Articles on Testing
 
 - [:notebook: Angular 2 Testing Guide by Gerard Sans](https://medium.com/google-developer-experts/angular-2-testing-guide-a485b6cb1ef0)
-- [:notebook: Testing Angular Directives with Custom Matchers](https://blog.thoughtram.io/angular/2016/12/27/angular-2-advance-testing-with-custom-matchers.html)
+- [:notebook: Testing Angular Directives with Custom Matchers by Thoughtram](https://blog.thoughtram.io/angular/2016/12/27/angular-2-advance-testing-with-custom-matchers.html)
+- [:notebook: Essential Angular Testing by Nrwl](https://blog.nrwl.io/essential-angular-testing-192315f8be9b#.undqs5icx)
 - [:notebook: Three Ways to Test Angular 2 Components by Victor Savkin](https://vsavkin.com/three-ways-to-test-angular-2-components-dcea8e90bd8d#.hif9f24b5)
 
 ## Run them yourself
