@@ -26,14 +26,14 @@ All the scenarios are listed here below and nicely linked to the source file.
     - [mocking nested components](./src/app/components/nested.component.spec.ts)  
     _Learn how to mock out nested components which you don't want to necessarily test_
 1. [**Testing Services**](./src/app/services)
-    - [Simple stateless function](./app/services/greeting.service.spec.ts)  
+    - [Simple stateless function](./src/app/services/greeting.service.spec.ts)  
     _Learn about different ways of injecting a service into a test case as well as how to test service methods._
-    - [Async operations]('./app/services/async.service.spec.ts)  
+    - [Async operations]('./src/app/services/async.service.spec.ts)  
     _Learn how to test async operations using the `async()` as well as `fakeAsync()` functions._
-    - [Mocking and remote http calls]('./app/services/remote.service.spec.ts)  
+    - [Mocking and remote http calls]('./src/app/services/remote.service.spec.ts)  
     _Learn how to mock external dependencies, such as use the `MockBackend` provided by Angular to respond to http calls._
-1. [**Custom Matchers and Utilities**](./app/utils)
-    - [Create your own custom Jasmine matchers](./app/utils/custom-matchers.ts)
+1. [**Custom Matchers and Utilities**](./src/app/utils)
+    - [Create your own custom Jasmine matchers](./src/app/utils/custom-matchers.ts)
 
 ## Articles on Testing
 
