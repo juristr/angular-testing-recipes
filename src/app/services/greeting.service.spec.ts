@@ -35,7 +35,7 @@ describe('GreetingService', () => {
 
     beforeEach(inject([GreetingService], (s: GreetingService) => {
       service = s;
-    });
+    }));
 
     it('should have a service instance', () => {
       expect(service).toBeDefined();
