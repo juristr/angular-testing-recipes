@@ -53,4 +53,4 @@ By running `npm run test.watch` you can run the tests in watch mode which is par
 
 ## Contribute
 
-Wanna help? Of course! Just send me a PR :smiley:.
+Wanna help? Of course! Just open an [issue](https://github.com/juristr/angular-testing-recipes/issues) and/or [send me a PR](https://github.com/juristr/angular-testing-recipes/pulls) :smiley:.
