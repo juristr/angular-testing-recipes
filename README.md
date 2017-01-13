@@ -6,7 +6,7 @@
 
 **This is still a <i>work in progress</i> wherefore the repository structure might still change heavily. I'm happy for every contribution/suggestion. Just open an issue or send me a PR :)**
 
-I've been given a talk on "Testing with Angular".
+I've been giving a talk on "Testing with Angular".
 
 - [:notebook: Slides](https://docs.google.com/presentation/d/1gJCBr_M5dCcCX9WUM52ZUAKVlPj6hQv3MYXKlgFMpSA/edit?usp=sharing)
 - [:video_camera: Talk](https://www.youtube.com/watch?v=Uw_XomCJaGQ)
