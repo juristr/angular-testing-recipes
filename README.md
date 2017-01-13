@@ -4,7 +4,7 @@
 
 > This repo is for **Angular version 2+**. [More &raquo;](https://juristr.com/blog/2016/12/let-me-explain-angular-release-cycles/)
 
-**This is still a <i>work in progress</i> wherefore the repository structure might still change heavily. I'm happy for every contribution/suggestion. Just open an issue or send me a PR :)**
+The goal of this repository is to have a collection of recipes for common testing scenarios with Angular. I'm happy for every contribution/suggestion :smiley:.
 
 I've been giving a talk on "Testing with Angular".
 
