@@ -6,6 +6,8 @@
 
 The goal of this repository is to have a collection of recipes for common testing scenarios with Angular. I'm happy for every contribution/suggestion :smiley:.
 
+## Talk (Video + Slides)
+
 I've been giving a talk on "Testing with Angular".
 
 - [:notebook: Slides](https://docs.google.com/presentation/d/1gJCBr_M5dCcCX9WUM52ZUAKVlPj6hQv3MYXKlgFMpSA/edit?usp=sharing)
