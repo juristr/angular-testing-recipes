@@ -32,6 +32,8 @@ All the scenarios are listed here below and nicely linked to the source file.
     _Test dynamic CSS styles using custom Jasmine matchers._
     - [mocking nested components](./src/app/components/nested.component.spec.ts)  
     _Learn how to mock out nested components which you don't want to necessarily test_
+    - [async pipes within templates](./src/app/components/async-stream.component.spec.ts)  
+    _Shows how to correctly resolve async pipes and then verify they properly render in the HTML_
 1. [**Testing Services**](./src/app/services)
     - [Simple stateless function](./src/app/services/greeting.service.spec.ts)  
     _Learn about different ways of injecting a service into a test case as well as how to test service methods._
