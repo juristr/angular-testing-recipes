@@ -2,7 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { customMatchers } from '../utils/custom-matchers';
+import { customMatchers, expect, NgMatchers } from '../utils/custom-matchers';
 
 import { Component } from '@angular/core';
 
@@ -13,21 +13,22 @@ import { Component } from '@angular/core';
   `
 })
 class DynamicStylesComponent {
-    color:string = 'black';
+  color = 'black';
 }
 
 describe('DynamicStylesComponent', () => {
   let component: DynamicStylesComponent;
   let fixture: ComponentFixture<DynamicStylesComponent>;
 
-  beforeEach(async(() => {
-    jasmine.addMatchers(customMatchers);
+  beforeEach(
+    async(() => {
+      jasmine.addMatchers(customMatchers);
 
-    TestBed.configureTestingModule({
-      declarations: [DynamicStylesComponent]
+      TestBed.configureTestingModule({
+        declarations: [DynamicStylesComponent]
+      }).compileComponents();
     })
-      .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DynamicStylesComponent);
@@ -40,7 +41,8 @@ describe('DynamicStylesComponent', () => {
   });
 
   it('should correctly set the background style', () => {
-      expect(fixture.debugElement.children[0].nativeElement).toHaveCssStyle({ 'background-color': 'black'});
+    expect(fixture.debugElement.children[0].nativeElement).toHaveCssStyle({
+      'background-color': 'black'
+    });
   });
-    
 });

@@ -1,59 +1,54 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/0.13/config/configuration-file.html
 
-module.exports = function (config) {
+module.exports = function(config) {
   var configuration = {
     basePath: '',
-    frameworks: ['jasmine', 'angular-cli'],
+    frameworks: ['jasmine', '@angular/cli'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-remap-istanbul'),
-      require('angular-cli/plugins/karma'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage-istanbul-reporter'),
+      require('@angular/cli/plugins/karma'),
       require('karma-mocha-reporter')
     ],
-    files: [
-      { pattern: './src/test.ts', watched: false }
-    ],
-    preprocessors: {
-      './src/test.ts': ['angular-cli']
+    client: {
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    mime: {
-      'text/x-typescript': ['ts','tsx']
-    },
-    remapIstanbulReporter: {
-      reports: {
-        html: 'coverage',
-        lcovonly: './coverage/coverage.lcov'
-      }
+    coverageIstanbulReporter: {
+      reports: ['html', 'lcovonly'],
+      fixWebpackSourcePaths: true
     },
     angularCli: {
-      config: './angular-cli.json',
       environment: 'dev'
     },
-    reporters: config.angularCli && config.angularCli.codeCoverage
-              ? ['mocha', 'karma-remap-istanbul']
-              : ['mocha'],
+    // files: [
+    //   { pattern: './src/test.ts', watched: false }
+    // ],
+    // preprocessors: {
+    //   './src/test.ts': ['angular-cli']
+    // },
+    // mime: {
+    //   'text/x-typescript': ['ts','tsx']
+    // },
+    reporters: ['mocha', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
     customLaunchers: {
-        ChromeTravisCi: {
-            base: 'Chrome',
-            flags: ['--no-sandbox']
-        }
+      ChromeTravisCi: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
     },
     singleRun: false
   };
-
-  if (process.env.TRAVIS){
-      configuration.browsers = [
-          'ChromeTravisCi'
-      ];
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['ChromeTravisCi'];
   }
 
   config.set(configuration);
-
 };
