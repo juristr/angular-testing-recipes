@@ -39,8 +39,10 @@ All the scenarios are listed here below and nicely linked to the source file.
     _Learn about different ways of injecting a service into a test case as well as how to test service methods._
     - [Async operations](./src/app/services/async.service.spec.ts)  
     _Learn how to test async operations using the `async()` as well as `fakeAsync()` functions._
-    - [Mocking and remote http calls](./src/app/services/remote.service.spec.ts)  
+    - Mocking and remote http calls  
     _Learn how to mock external dependencies, such as use the `MockBackend` provided by Angular to respond to http calls._
+      - [Old, < 4.3.1 Http service](./src/app/services/remote.service.spec.ts)
+      - [New HttpClient from `@angular/common/http`](./src/app/services/remote-new.service.spec.ts)  
 1. [**Testing Pipes**](./src/app/pipes)
     - [custom filter pipe](./src/app/pipes/filter.pipe.spec.ts)
 1. [**Custom Matchers and Utilities**](./src/app/utils)
