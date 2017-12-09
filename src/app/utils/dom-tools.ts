@@ -1,16 +1,14 @@
-// see https://github.com/angular/flex-layout/edit/master/src/lib/utils/testing/dom-tools.ts
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 
 /**
-* @license
-* Copyright Google Inc. All Rights Reserved.
-*
-* Use of this source code is governed by an MIT-style license that can be
-* found in the LICENSE file at https://angular.io/license
-*/
-
-/**
-* Exported DOM accessor utility functions
-*/
+ * Exported DOM accessor utility functions
+ */
 export const _dom = {
   hasStyle,
   getDistributedNodes,
@@ -20,12 +18,15 @@ export const _dom = {
   childNodes,
   childNodesAsList,
   hasClass,
+  hasAttribute,
+  getAttribute,
   hasShadowRoot,
   isCommentNode,
   isElementNode,
   isPresent,
   isShadowRoot,
-  tagName
+  tagName,
+  lastElementChild
 };
 
 // ******************************************************************************************
@@ -38,8 +39,17 @@ function getStyle(element: any, stylename: string): string {
   return element.style[stylename];
 }
 
-function hasStyle(element: any, styleName: string, styleValue: string = null): boolean {
-  const value = this.getStyle(element, styleName) || '';
+function hasStyle(
+  element: any,
+  styleName: string,
+  styleValue: string = null,
+  inlineOnly = true
+): boolean {
+  let value = getStyle(element, styleName) || '';
+  if (!value && !inlineOnly) {
+    // Search stylesheets
+    value = getComputedStyle(element).getPropertyValue(styleName) || '';
+  }
   return styleValue ? value == styleValue : value.length > 0;
 }
 
@@ -56,16 +66,24 @@ function getText(el: Node): string {
 }
 
 function childNodesAsList(el: Node): any[] {
-  const childNodes = el.childNodes;
-  const res = new Array(childNodes.length);
-  for (let i = 0; i < childNodes.length; i++) {
-    res[i] = childNodes[i];
+  const list = el.childNodes;
+  const res = new Array(list.length);
+  for (let i = 0; i < list.length; i++) {
+    res[i] = list[i];
   }
   return res;
 }
 
 function hasClass(element: any, className: string): boolean {
   return element.classList.contains(className);
+}
+
+function hasAttribute(element: any, attributeName: string): boolean {
+  return element.hasAttribute(attributeName);
+}
+
+function getAttribute(element: any, attributeName: string): string {
+  return element.getAttribute(attributeName);
 }
 
 function childNodes(el: any): Node[] {
@@ -91,6 +109,16 @@ function isShadowRoot(node: any): boolean {
 function isPresent(obj: any): boolean {
   return obj != null;
 }
+
 function tagName(element: any): string {
   return element.tagName;
+}
+
+// ******************************************************************************************
+// These functions are part of the DOM API
+// and are to be used ONLY internally in custom-matchers.ts and Unit Tests
+// ******************************************************************************************
+
+function lastElementChild(element: any): Node | null {
+  return element.lastElementChild;
 }

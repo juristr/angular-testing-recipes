@@ -2,54 +2,61 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
-import { Http, HttpModule, XHRBackend, Response, ResponseOptions } from '@angular/http';
-import {MockBackend, MockConnection} from '@angular/http/testing';
+import {
+  Http,
+  HttpModule,
+  XHRBackend,
+  Response,
+  ResponseOptions
+} from '@angular/http';
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 class RemoteService {
+  constructor(private http: Http) {}
 
-    constructor(private http: Http) {}
-
-    fetchViaHttp() : Observable<any> {
-        return this.http
-            .get('/somendpoint/people.json')
-            .map(x => x.json());
-    }
+  fetchViaHttp(): Observable<any> {
+    return this.http.get('/somendpoint/people.json').map(x => x.json());
+  }
 }
 
 describe('RemoteService', () => {
-    let service: RemoteService;
-    let mockBackend;
+  let service: RemoteService;
+  let mockBackend;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [HttpModule],
-            providers: [
-                RemoteService,
-                MockBackend,
-                { provide: XHRBackend, useClass: MockBackend }
-            ]
-        });
-
-        // inject the service
-        service = TestBed.get(RemoteService);
-        mockBackend = TestBed.get(MockBackend);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpModule],
+      providers: [
+        RemoteService,
+        MockBackend,
+        { provide: XHRBackend, useClass: MockBackend }
+      ]
     });
 
-    it('should have a service instance', () => {
-        expect(service).toBeDefined();
-    });
+    // inject the service
+    service = TestBed.get(RemoteService);
+    mockBackend = TestBed.get(MockBackend);
+  });
 
-    it('should return the json', async(() => {
-        mockBackend.connections.subscribe((conn:MockConnection) => {
-            conn.mockRespond(new Response(new ResponseOptions('{ "name": "Juri" }')));
-        });
+  it('should have a service instance', () => {
+    expect(service).toBeDefined();
+  });
 
-        service.fetchViaHttp().subscribe((data) => {
-            expect(data.name).toBe('Juri');
-        });
-    }));
+  it(
+    'should return the json',
+    async(() => {
+      mockBackend.connections.subscribe((conn: MockConnection) => {
+        conn.mockRespond(
+          new Response(new ResponseOptions({ body: '{ "name": "Juri" }' }))
+        );
+      });
 
+      service.fetchViaHttp().subscribe(data => {
+        expect(data.name).toBe('Juri');
+      });
+    })
+  );
 });

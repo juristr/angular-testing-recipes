@@ -1,18 +1,18 @@
-// see https://github.com/angular/flex-layout/edit/master/src/lib/utils/testing/custom-matchers.ts
-
 /**
-* @license
-* Copyright Google Inc. All Rights Reserved.
-*
-* Use of this source code is governed by an MIT-style license that can be
-* found in the LICENSE file at https://angular.io/license
-*/
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 
 declare var global: any;
 const _global = <any>(typeof window === 'undefined' ? global : window);
 
 import { _dom as _ } from './dom-tools';
+
 import { applyCssPrefixes } from './auto-prefixer';
+import { extendObject } from './object-extend';
 
 export const expect: (actual: any) => NgMatchers = <any>_global.expect;
 
@@ -21,47 +21,62 @@ export const expect: (actual: any) => NgMatchers = <any>_global.expect;
  */
 export interface NgMatchers extends jasmine.Matchers {
   /**
-  * Invert the matchers.
-  */
-  not: NgMatchers;
-
-  /**
    * Expect the element to have exactly the given text.
-  *
-  * ## Example
-  *
-  * {@example testing/ts/matchers.ts region='toHaveText'}
-  */
+   *
+   * ## Example
+   *
+   * {@example testing/ts/matchers.ts region='toHaveText'}
+   */
   toHaveText(expected: string): boolean;
 
   /**
-  * Compare key:value pairs as matching EXACTLY
-  */
+   * Compare key:value pairs as matching EXACTLY
+   */
   toHaveMap(expected: { [k: string]: string }): boolean;
 
   /**
-  * Expect the element to have the given CSS class.
-  *
-  * ## Example
-  *
-  * {@example testing/ts/matchers.ts region='toHaveCssClass'}
-  */
+   * Expect the element to have the given CSS class.
+   *
+   * ## Example
+   *
+   * {@example testing/ts/matchers.ts region='toHaveCssClass'}
+   */
   toHaveCssClass(expected: string): boolean;
 
   /**
-  * Expect the element to have the given CSS styles.
-  *
-  * ## Example
-  *
-  * {@example testing/ts/matchers.ts region='toHaveCssStyle'}
-  */
-  toHaveCssStyle(expected: { [k: string]: string } | string): boolean;
+   * Expect the element to have the given pairs of attribute name and attribute value
+   */
+  toHaveAttributes(expected: { [k: string]: string }): boolean;
+
+  /**
+   * Expect the element to have the given CSS styles injected INLINE
+   *
+   * ## Example
+   *
+   * {@example testing/ts/matchers.ts region='toHaveStyle'}
+   */
+  toHaveStyle(expected: { [k: string]: string } | string): boolean;
+
+  /**
+   * Expect the element to have the given CSS inline OR computed styles.
+   *
+   * ## Example
+   *
+   * {@example testing/ts/matchers.ts region='toHaveStyle'}
+   */
+  toHaveStyle(expected: { [k: string]: string } | string): boolean;
+
+  /**
+   * Invert the matchers.
+   */
+  not: NgMatchers;
 }
+
 /**
-* NOTE: These custom JASMINE Matchers are used only
-*       in the Karma/Jasmine testing for the Layout Directives
-*       in `src/lib/flex/api`
-*/
+ * NOTE: These custom JASMINE Matchers are used only
+ *       in the Karma/Jasmine testing for the Layout Directives
+ *       in `src/lib/flex/api`
+ */
 export const customMatchers: jasmine.CustomMatcherFactories = {
   toEqual: function(util) {
     return {
@@ -108,9 +123,9 @@ export const customMatchers: jasmine.CustomMatcherFactories = {
           pass: _.hasClass(actual, className) == !isNot,
           get message() {
             return `
-             Expected ${actual.outerHTML} ${isNot ? 'not ' : ''}
-             to contain the CSS class "${className}"
-           `;
+              Expected ${actual.outerHTML} ${isNot ? 'not ' : ''}
+              to contain the CSS class '${className}'
+            `;
           }
         };
       };
@@ -119,7 +134,10 @@ export const customMatchers: jasmine.CustomMatcherFactories = {
 
   toHaveMap: function() {
     return {
-      compare: function(actual: { [k: string]: string }, map: { [k: string]: string }) {
+      compare: function(
+        actual: { [k: string]: string },
+        map: { [k: string]: string }
+      ) {
         let allPassed: boolean;
         allPassed = Object.keys(map).length !== 0;
         Object.keys(map).forEach(key => {
@@ -130,59 +148,134 @@ export const customMatchers: jasmine.CustomMatcherFactories = {
           pass: allPassed,
           get message() {
             return `
-             Expected ${JSON.stringify(actual)} ${!allPassed ? ' ' : 'not '} to contain the
-             "${JSON.stringify(map)}"
-           `;
+              Expected ${JSON.stringify(actual)} ${
+              !allPassed ? ' ' : 'not '
+            } to contain the
+              '${JSON.stringify(map)}'
+            `;
           }
         };
       }
     };
   },
 
-  toHaveCssStyle: function() {
+  toHaveAttributes: function() {
     return {
-      compare: function(actual: any, styles: { [k: string]: string } | string) {
+      compare: function(actual: any, map: { [k: string]: string }) {
         let allPassed: boolean;
-        if (typeof styles === 'string') {
-          allPassed = _.hasStyle(actual, styles);
-        } else {
-          allPassed = Object.keys(styles).length !== 0;
-          Object.keys(styles).forEach(prop => {
-            allPassed = allPassed && hasPrefixedStyles(actual, prop, styles[prop]);
-          });
-        }
-
+        let attributeNames = Object.keys(map);
+        allPassed = attributeNames.length !== 0;
+        attributeNames.forEach(name => {
+          allPassed =
+            allPassed &&
+            _.hasAttribute(actual, name) &&
+            _.getAttribute(actual, name) === map[name];
+        });
         return {
           pass: allPassed,
           get message() {
-            const expectedValueStr = typeof styles === 'string' ? styles : JSON.stringify(styles);
             return `
-             Expected ${actual.outerHTML} ${!allPassed ? ' ' : 'not '} to contain the
-             CSS ${typeof styles === 'string' ? 'property' : 'styles'} "${expectedValueStr}"
-           `;
+              Expected ${actual.outerHTML} ${
+              allPassed ? 'not ' : ''
+            } attributes to contain
+              '${JSON.stringify(map)}'
+            `;
           }
         };
       }
+    };
+  },
+
+  /**
+   * Check element's inline styles only
+   */
+  toHaveStyle: function() {
+    return {
+      compare: buildCompareStyleFunction(true)
+    };
+  },
+
+  /**
+   * Check element's css stylesheet only (if not present inline)
+   */
+  toHaveCSS: function() {
+    return {
+      compare: buildCompareStyleFunction(false)
     };
   }
 };
 
 /**
-* Validate presence of requested style or use fallback
-* to possible `prefixed` styles. Useful when some browsers
-* (Safari, IE, etc) will use prefixed style instead of defaults.
-*/
-function hasPrefixedStyles(actual, key, value) {
+ * Curried value to function to check styles that are inline or in a stylesheet for the
+ * specified DOM element.
+ */
+function buildCompareStyleFunction(inlineOnly = true) {
+  return function(actual: any, styles: { [k: string]: string } | string) {
+    let found = {};
+
+    let allPassed: boolean;
+    if (typeof styles === 'string') {
+      styles = { [styles]: null };
+    }
+
+    allPassed = Object.keys(styles).length !== 0;
+    Object.keys(styles).forEach(prop => {
+      let { elHasStyle, current } = hasPrefixedStyles(
+        actual,
+        prop,
+        styles[prop],
+        inlineOnly
+      );
+      allPassed = allPassed && elHasStyle;
+      if (!elHasStyle) {
+        extendObject(found, current);
+      }
+    });
+
+    return {
+      pass: allPassed,
+      get message() {
+        const expectedValueStr =
+          typeof styles === 'string' ? styles : JSON.stringify(styles, null, 2);
+        const foundValueStr = inlineOnly
+          ? actual.outerHTML
+          : JSON.stringify(found);
+        return `
+          Expected ${foundValueStr} ${!allPassed ? ' ' : 'not '} to contain the
+          CSS ${typeof styles === 'string' ? 'property' : 'styles'} '${
+          expectedValueStr
+        }'
+        `;
+      }
+    };
+  };
+}
+
+/**
+ * Validate presence of requested style or use fallback
+ * to possible `prefixed` styles. Useful when some browsers
+ * (Safari, IE, etc) will use prefixed style instead of defaults.
+ */
+function hasPrefixedStyles(actual, key, value, inlineOnly) {
+  const current = {},
+    computed = getComputedStyle(actual);
+
   value = value !== '*' ? value.trim() : undefined;
-  let elHasStyle = _.hasStyle(actual, key, value);
+  let elHasStyle = _.hasStyle(actual, key, value, inlineOnly);
   if (!elHasStyle) {
     let prefixedStyles = applyCssPrefixes({ [key]: value });
     Object.keys(prefixedStyles).forEach(prop => {
       // Search for optional prefixed values
-      elHasStyle = elHasStyle || _.hasStyle(actual, prop, prefixedStyles[prop]);
+      elHasStyle =
+        elHasStyle ||
+        _.hasStyle(actual, prop, prefixedStyles[prop], inlineOnly);
+      if (!elHasStyle) {
+        current[prop] = computed.getPropertyValue(prop);
+      }
     });
   }
-  return elHasStyle;
+  // Return BOTH confirmation and current computed key values (if confirmation == false)
+  return { elHasStyle, current };
 }
 
 function elementText(n: any): string {

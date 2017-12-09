@@ -41,7 +41,7 @@ describe('DynamicStylesComponent', () => {
   });
 
   it('should correctly set the background style', () => {
-    expect(fixture.debugElement.children[0].nativeElement).toHaveCssStyle({
+    expect(fixture.debugElement.children[0].nativeElement).toHaveStyle({
       'background-color': 'black'
     });
   });
