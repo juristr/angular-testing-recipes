@@ -10,7 +10,7 @@
 import { Type, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { extendObject } from '../object-extend'; // tslint:disable-line:no-unused-variable
+import { extendObject } from './object-extend'; // tslint:disable-line:no-unused-variable
 
 export type ComponentClazzFn = () => Type<any>;
 
