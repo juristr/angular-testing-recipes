@@ -2,7 +2,7 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Observable } from 'rxjs/Observable';
 
@@ -13,6 +13,18 @@ class RemoteService {
   fetchViaHttp(): Observable<any> {
     return this.http.get('/someendpoint/people.json');
   }
+  
+  fetchViaHttpWithParams(params: any) {
+    // remove empty/undefined/null props
+    if (params) {
+      params = Object.entries(filter)
+        .filter(([k, v]) => v != null && v !== '')
+        .reduce((acc, [k, v]) => Object.assign(acc, { [k]: v }), {});
+    }
+    
+    return this.http.get('/someendpoint/people.json', { params: new HttpParams({ fromObject: params });
+  }
+  
 }
 
 describe('RemoteService', () => {
@@ -46,4 +58,27 @@ describe('RemoteService', () => {
       name: 'Juri'
     });
   });
+      
+  it('should add HTTP params', () => {
+    service.fetchViaHttpWithParams({ name: 'Juri' }).subscribe();
+    const req = httpTestingController.expectOne(req => req.params.has('name'));
+
+    req.flush({});
+  });
+
+  it('should remove null/undefined/empty values from HTTP params', () => {
+    service
+      .fetchViaHttpWithParams({ name: 'Juri', age: null, street: undefined, location: '' })
+      .subscribe();
+    const req = httpTestingController.expectOne(req =>
+      req.url.includes('people')
+    );
+    expect(req.request.params.has('name')).toBeTruthy();
+    expect(req.request.params.has('age')).toBeFalsy();
+    expect(req.request.params.has('street')).toBeFalsy();
+    expect(req.request.params.has('location')).toBeFalsy();
+
+    req.flush({});
+  });
+      
 });
