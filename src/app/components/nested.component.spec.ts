@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 /* tslint:disable:no-unused-variable */
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
@@ -45,8 +45,8 @@ describe('NestedComponentTesting', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [NestedComponentTesting],
-        schemas: [NO_ERRORS_SCHEMA]
-      }).compileComponents();
+        schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      });
     }));
 
     beforeEach(() => {
