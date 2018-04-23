@@ -34,8 +34,8 @@ All the scenarios are listed here below and nicely linked to the source file.
       _Test dynamic CSS styles using custom Jasmine matchers._
     * [mocking nested components](./src/app/components/nested.component.spec.ts)  
       _Learn how to mock out nested components which you don't want to necessarily test_
-    * [async pipes within templates](./src/app/components/async-stream.component.spec.ts)  
-      _Shows how to correctly resolve async pipes and then verify they properly render in the HTML_
+    * [testing component with service deps](./src/app/components/component-mock-external.component.spec.ts)  
+      _Simple test of component logic by manually instantiating the component_
 1.  [**Testing Services**](./src/app/services)
     * [Simple stateless function](./src/app/services/greeting.service.spec.ts)  
       _Learn about different ways of injecting a service into a test case as well as how to test service methods._
@@ -45,6 +45,8 @@ All the scenarios are listed here below and nicely linked to the source file.
       _Learn how to mock external dependencies, such as use the `MockBackend` provided by Angular to respond to http calls._
 1.  [**Testing Pipes**](./src/app/pipes)
     * [custom filter pipe](./src/app/pipes/filter.pipe.spec.ts)
+    * [async pipes within templates](./src/app/components/async-stream.component.spec.ts)  
+      _Shows how to correctly resolve async pipes and then verify they properly render in the HTML_
 1.  [**Custom Matchers and Utilities**](./src/app/utils)
     * [Create your own custom Jasmine matchers](./src/app/utils/custom-matchers.ts)
 
