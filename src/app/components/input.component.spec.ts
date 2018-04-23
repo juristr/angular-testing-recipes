@@ -2,20 +2,16 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { InputComponent } from './input.component';
 
-describe('InputComponent', () => {
+xdescribe('InputComponent', () => {
   let component: InputComponent;
   let fixture: ComponentFixture<InputComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [InputComponent]
-    });
+    // TODO: configure the InputComponent with the TestBed
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    // TODO: assign the fixture & component variable
   });
 
   it('should create', () => {
@@ -23,13 +19,10 @@ describe('InputComponent', () => {
   });
 
   it('should correctly render the passed @Input value', () => {
-    // there shouldn't be any value initially
-    expect(fixture.debugElement.nativeElement.innerHTML).toBe('');
-
-    // let's set the @Input value and then verify again
-    component.message = 'Hi there';
-
-    fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.innerHTML).toBe('Hi there');
+    // TODO
+    /**
+     * 1. Verify that the current HTML is empty -> ''
+     * 2. Verify that when setting the @Input(), the HTML properly displays it
+     */
   });
 });

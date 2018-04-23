@@ -30,22 +30,11 @@ describe('CounterComponent', () => {
     fixture.destroy();
   });
 
-  it(
-    'CounterComponent should count',
-    fakeAsync(() => {
-      // you need to call the ngOnInit explicitly, and inside the
-      // fakeAsync() for the tick() to work
-      component.ngOnInit();
-      expect(component.currentCounter).toBe(0);
+  xit('CounterComponent should count', () => {
+    // TODO: test that the counter counts every 1 second (hint: use fakeAsync)
 
-      tick(500);
-      expect(component.currentCounter).toBe(0);
-
-      // after 1000ms the counter should have increased
-      tick(500);
-      expect(component.currentCounter).toBe(1);
-
-      discardPeriodicTasks();
-    })
-  );
+    // HINT: this function is needed to discard any periodic tasks after
+    // the test run, i.e. our counter timer
+    discardPeriodicTasks();
+  });
 });

@@ -23,32 +23,22 @@ describe('DomTestingComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should not have the DOM element if boolean is set to false', () => {
-    const containerElement = fixture.debugElement.query(By.css('.container'));
-    expect(containerElement).toBeNull();
+  xit('should not have the DOM element if boolean is set to false', () => {
+    // TODO: grab the .container and verify it is not visible by default
   });
 
-  it('should have the DOM element if boolean is set to true', () => {
-    component.isVisible = true;
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      const containerElement = fixture.debugElement.query(By.css('.container'));
-      expect(containerElement).not.toBeNull();
-    });
+  xit('should have the DOM element if boolean is set to true', () => {
+    // TODO: test that when set the isVisible=true -> the .container gets visible
   });
 
-  it('clicking the button should toggle visiblity', async(() => {
-    const button = fixture.debugElement.query(By.css('button'));
-
-    expect(fixture.debugElement.query(By.css('.container'))).toBeNull();
-
-    button.triggerEventHandler('click', <Event>{});
-    fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.container'))).not.toBeNull();
-
-    button.triggerEventHandler('click', <Event>{});
-    fixture.detectChanges();
-
-    expect(fixture.debugElement.query(By.css('.container'))).toBeNull();
+  xit('clicking the button should toggle visiblity', async(() => {
+    // TODO
+    /**
+     * 1. verify the .container is not
+     * 2. trigger a click even on the button
+     * 3. verify that the container is visible
+     * 4. Click the button again
+     * 5. Verify the container is hidden again
+     */
   }));
 });

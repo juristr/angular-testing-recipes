@@ -19,26 +19,25 @@ describe('AsyncService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should handle a simple async scenario', async(() => {
+  xit('should handle a simple async scenario', () => {
+    // TODO fix this test
     service.simpleAsync().then(result => {
-      expect(result).toBe('Hi there');
+      expect(result).toBe('Hi therex');
     });
-  }));
+  });
 
-  it(
-    'should work with fakeAsync',
-    fakeAsync(() => {
-      let value;
-      service.simpleAsync().then(result => {
-        value = result;
-      });
-      expect(value).not.toBeDefined();
+  xit('should work with fakeAsync', () => {
+    // TODO: implement this test using fakeAsync
+    let value;
+    service.simpleAsync().then(result => {
+      value = result;
+    });
+    expect(value).not.toBeDefined();
 
-      tick(50);
-      expect(value).not.toBeDefined();
+    // after 50 ms
+    expect(value).not.toBeDefined();
 
-      tick(50);
-      expect(value).toBeDefined();
-    })
-  );
+    // after 50 ms
+    expect(value).toBeDefined();
+  });
 });

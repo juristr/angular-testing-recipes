@@ -17,14 +17,16 @@ class CollapsiblePanel {}
 class NestedComponentTesting {}
 
 describe('NestedComponentTesting', () => {
-  describe('Mocking all nested components', () => {
+  xdescribe('Mocking all nested components', () => {
     let component: NestedComponentTesting;
     let fixture: ComponentFixture<NestedComponentTesting>;
 
     beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [NestedComponentTesting, CollapsiblePanel]
-      });
+      // TODO:
+      /**
+       * 1. create a stub component for `<my-collapsible-panel>` component
+       * 2. configure the TestBed to use the stub component
+       */
     }));
 
     beforeEach(() => {
@@ -38,15 +40,12 @@ describe('NestedComponentTesting', () => {
     });
   });
 
-  describe('Ignoring nested components', () => {
+  xdescribe('Ignoring nested components', () => {
     let component: NestedComponentTesting;
     let fixture: ComponentFixture<NestedComponentTesting>;
 
     beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [NestedComponentTesting],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA]
-      });
+      // TODO: configure the TestBed to ignore all unknown custom elements
     }));
 
     beforeEach(() => {

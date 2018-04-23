@@ -22,22 +22,17 @@ describe('OutputComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should test the emitter with a Jasmine spy', () => {
-    spyOn(component.greet, 'emit');
-
-    const button = fixture.nativeElement.querySelector('button');
-    button.click();
-
-    expect(component.greet.emit).toHaveBeenCalledWith('Hi');
+  xit('should test the emitter with a Jasmine spy', () => {
+    // TODO: use Jasmine spies
+    /**
+     * 1. Setup a Jasmine spy on the component.greet "emit" fn
+     * 2. Click the button to trigger the @Output
+     * 3. Verify the emit function has actually been called with the correct value
+     */
   });
 
-  it('should test the emitter with a simple subscribe', () => {
-    let greet;
-    component.greet.subscribe(d => {
-      greet = d;
-    });
-
-    component.doGreet();
-    expect(greet).toBe('Hi');
+  xit('should test the emitter with a simple subscribe', () => {
+    // TODO: call the component.doGreet() and use an async test
+    // to verify it emits the correct value
   });
 });

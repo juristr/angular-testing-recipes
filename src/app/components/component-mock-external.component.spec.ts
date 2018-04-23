@@ -10,8 +10,7 @@ describe('ContentProjectionComponent', () => {
   let langService: LanguageService;
 
   beforeEach(() => {
-    langService = new LanguageService();
-    component = new WithExternalServiceComponent(langService);
+    // TODO Instantiate component & langService;
   });
 
   afterEach(() => {
@@ -19,19 +18,16 @@ describe('ContentProjectionComponent', () => {
     component = null;
   });
 
-  it('should greet in italian when the lang is IT', () => {
-    langService.setCurrentLanguage(LanguageEnum.IT);
-    expect(component.getGreeting()).toBe('Ciao');
+  xit('should greet in italian when the lang is IT', () => {
+    // TODO use the setCurrentLanguage(..) & test the getGreeting() function
   });
 
-  it('should greet in german when the lang is DE', () => {
-    spyOnProperty(langService, 'currentLang', 'get').and.returnValue(
-      LanguageEnum.DE
-    );
-    expect(component.getGreeting()).toBe('Hallo');
+  xit('should greet in german when the lang is DE', () => {
+    // TODO use a Jasmine spy to spy on the "currentLang" getter
+    // Configure it s.t. it returns LanguageEnum.DE
   });
 
-  it('should greet in english by default', () => {
+  xit('should greet in english by default', () => {
     expect(component.getGreeting()).toBe('Hi');
   });
 });
