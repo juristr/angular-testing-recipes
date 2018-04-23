@@ -1,23 +1,8 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
 import { Component } from '@angular/core';
-
-// the content projected Component
-@Component({
-    selector: 'my-collapsible',
-    template: `
-        <h1>
-            <ng-content select="[title]"></ng-content>
-        </h1>
-        <div class="content">
-            <ng-content select="[body]"></ng-content>
-        </div>
-    `
-})
-class CollapsiblePanel {}
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { CollapsiblePanelComponent } from './content-projection.component';
 
 @Component({
   selector: 'test',
@@ -28,21 +13,20 @@ class CollapsiblePanel {}
     </my-collapsible>
   `
 })
-class ContentProjectionComponent {}
+class TestComponent {}
 
 describe('ContentProjectionComponent', () => {
-  let component: ContentProjectionComponent;
-  let fixture: ComponentFixture<ContentProjectionComponent>;
+  let component: TestComponent;
+  let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ContentProjectionComponent, CollapsiblePanel]
-    })
-      .compileComponents();
+      declarations: [TestComponent, CollapsiblePanelComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContentProjectionComponent);
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -52,11 +36,16 @@ describe('ContentProjectionComponent', () => {
   });
 
   it('should correctly project the title', () => {
-      expect(fixture.debugElement.query(By.css('my-collapsible')).query(By.css('h1')).nativeElement.innerHTML).toContain("I'm the title");
+    expect(
+      fixture.debugElement.query(By.css('my-collapsible')).query(By.css('h1'))
+        .nativeElement.innerHTML
+    ).toContain("I'm the title");
   });
 
   it('should correctly project the body', () => {
-      expect(fixture.debugElement.query(By.css('my-collapsible')).query(By.css('div')).nativeElement.innerHTML).toContain("I'm the body");
-  });  
-
+    expect(
+      fixture.debugElement.query(By.css('my-collapsible')).query(By.css('div'))
+        .nativeElement.innerHTML
+    ).toContain("I'm the body");
+  });
 });

@@ -1,17 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-import { Component, Input } from '@angular/core';
-
-@Component({
-  selector: 'test',
-  template: `{{ message }}`
-})
-class InputComponent {
-  @Input() message: string;
-}
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { InputComponent } from './input.component';
 
 describe('InputComponent', () => {
   let component: InputComponent;
@@ -20,8 +9,7 @@ describe('InputComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [InputComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -33,16 +21,15 @@ describe('InputComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
   it('should correctly render the passed @Input value', () => {
     // there shouldn't be any value initially
     expect(fixture.debugElement.nativeElement.innerHTML).toBe('');
-    
+
     // let's set the @Input value and then verify again
     component.message = 'Hi there';
 
     fixture.detectChanges();
     expect(fixture.debugElement.nativeElement.innerHTML).toBe('Hi there');
   });
-
 });

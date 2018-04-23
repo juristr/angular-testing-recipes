@@ -1,34 +1,19 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-import { customMatchers, expect, NgMatchers } from '../utils/custom-matchers';
-
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'test',
-  template: `
-    <div [style.background-color]="color"></div>
-  `
-})
-class DynamicStylesComponent {
-  color = 'black';
-}
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { customMatchers, expect } from '../utils/custom-matchers';
+import { DynamicStylesComponent } from './dynamic-styles.component';
 
 describe('DynamicStylesComponent', () => {
   let component: DynamicStylesComponent;
   let fixture: ComponentFixture<DynamicStylesComponent>;
 
-  beforeEach(
-    async(() => {
-      jasmine.addMatchers(customMatchers);
+  beforeEach(async(() => {
+    jasmine.addMatchers(customMatchers);
 
-      TestBed.configureTestingModule({
-        declarations: [DynamicStylesComponent]
-      }).compileComponents();
-    })
-  );
+    TestBed.configureTestingModule({
+      declarations: [DynamicStylesComponent]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DynamicStylesComponent);

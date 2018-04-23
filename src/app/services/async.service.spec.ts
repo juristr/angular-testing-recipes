@@ -1,21 +1,10 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, fakeAsync, inject, tick } from '@angular/core/testing';
-import { Injectable } from '@angular/core';
-
-@Injectable()
-class AsyncService {
-  simpleAsync() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve('Hi there');
-      }, 100);
-    });
-  }
-}
+import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import { AsyncService } from './async.service';
 
 describe('AsyncService', () => {
-  let service:AsyncService;
+  let service: AsyncService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,23 +20,25 @@ describe('AsyncService', () => {
   });
 
   it('should handle a simple async scenario', async(() => {
-    service.simpleAsync().then((result) => {
+    service.simpleAsync().then(result => {
       expect(result).toBe('Hi there');
     });
   }));
 
-  it('should work with fakeAsync', fakeAsync(() => {
-    let value;
-    service.simpleAsync().then((result) => {
-      value = result;
-    });
-    expect(value).not.toBeDefined();
+  it(
+    'should work with fakeAsync',
+    fakeAsync(() => {
+      let value;
+      service.simpleAsync().then(result => {
+        value = result;
+      });
+      expect(value).not.toBeDefined();
 
-    tick(50);
-    expect(value).not.toBeDefined();
+      tick(50);
+      expect(value).not.toBeDefined();
 
-    tick(50);
-    expect(value).toBeDefined();
-  }));
-
+      tick(50);
+      expect(value).toBeDefined();
+    })
+  );
 });

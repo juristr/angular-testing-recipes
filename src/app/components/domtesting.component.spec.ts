@@ -1,70 +1,54 @@
-import { tick } from '@angular/core/testing';
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-import { Component, Output, EventEmitter } from '@angular/core';
-
-@Component({
-    selector: 'test',
-    template: `
-    <div class="container" *ngIf="isVisible">Hi there!</div>
-    <button (click)="isVisible = !isVisible">toggle</button>
-  `
-})
-class DomTestingComponent {
-    isVisible: boolean = false;
-}
+import { DomTestingComponent } from './domtesting.component';
 
 describe('DomTestingComponent', () => {
-    let component: DomTestingComponent;
-    let fixture: ComponentFixture<DomTestingComponent>;
+  let component: DomTestingComponent;
+  let fixture: ComponentFixture<DomTestingComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [DomTestingComponent]
-        })
-            .compileComponents();
-    }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [DomTestingComponent]
+    }).compileComponents();
+  }));
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(DomTestingComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DomTestingComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should not have the DOM element if boolean is set to false', () => {
+    const containerElement = fixture.debugElement.query(By.css('.container'));
+    expect(containerElement).toBeNull();
+  });
+
+  it('should have the DOM element if boolean is set to true', () => {
+    component.isVisible = true;
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const containerElement = fixture.debugElement.query(By.css('.container'));
+      expect(containerElement).not.toBeNull();
     });
+  });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+  it('clicking the button should toggle visiblity', async(() => {
+    const button = fixture.debugElement.query(By.css('button'));
 
-    it('should not have the DOM element if boolean is set to false', () => {
-        let containerElement = fixture.debugElement.query(By.css('.container'));
-        expect(containerElement).toBeNull();
-    });
+    expect(fixture.debugElement.query(By.css('.container'))).toBeNull();
 
-    it('should have the DOM element if boolean is set to true', () => {
-        component.isVisible = true;
-        fixture.detectChanges();
-        fixture.whenStable().then(() => {
-            let containerElement = fixture.debugElement.query(By.css('.container'));
-            expect(containerElement).not.toBeNull();
-        });
-    });
+    button.triggerEventHandler('click', <Event>{});
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('.container'))).not.toBeNull();
 
-    it('clicking the button should toggle visiblity', async(() => {
-        let button = fixture.debugElement.query(By.css('button'));
+    button.triggerEventHandler('click', <Event>{});
+    fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('.container'))).toBeNull();
-
-        button.triggerEventHandler('click', <Event>{});
-        fixture.detectChanges();
-        expect(fixture.debugElement.query(By.css('.container'))).not.toBeNull();
-
-        button.triggerEventHandler('click', <Event>{});
-        fixture.detectChanges();
-
-        expect(fixture.debugElement.query(By.css('.container'))).toBeNull();
-    }));
-
+    expect(fixture.debugElement.query(By.css('.container'))).toBeNull();
+  }));
 });

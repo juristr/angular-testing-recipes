@@ -1,71 +1,62 @@
-import { tick } from '@angular/core/testing';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-
-import { Component } from '@angular/core';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
 @Component({
-    selector: 'my-collapsible-panel', 
-    template: ''
+  selector: 'my-collapsible-panel',
+  template: ''
 })
-class CollapsiblePanel{}
+class CollapsiblePanel {}
 
 @Component({
-    selector: 'test',
-    template: `
+  selector: 'test',
+  template: `
         <my-collapsible-panel></my-collapsible-panel>
   `
 })
 class NestedComponentTesting {}
 
 describe('NestedComponentTesting', () => {
+  describe('Mocking all nested components', () => {
+    let component: NestedComponentTesting;
+    let fixture: ComponentFixture<NestedComponentTesting>;
 
-    describe('Mocking all nested components', () => {
-        let component: NestedComponentTesting;
-        let fixture: ComponentFixture<NestedComponentTesting>;
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        declarations: [NestedComponentTesting, CollapsiblePanel]
+      }).compileComponents();
+    }));
 
-        beforeEach(async(() => {
-            TestBed.configureTestingModule({
-                declarations: [NestedComponentTesting, CollapsiblePanel]
-            })
-                .compileComponents();
-        }));
-
-        beforeEach(() => {
-            fixture = TestBed.createComponent(NestedComponentTesting);
-            component = fixture.componentInstance;
-            fixture.detectChanges();
-        });
-
-        it('should create', () => {
-            expect(component).toBeTruthy();
-        });
+    beforeEach(() => {
+      fixture = TestBed.createComponent(NestedComponentTesting);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
     });
 
-    describe('Ignoring nested components', () => {
-        let component: NestedComponentTesting;
-        let fixture: ComponentFixture<NestedComponentTesting>;
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+  });
 
-        beforeEach(async(() => {
-            TestBed.configureTestingModule({
-                declarations: [NestedComponentTesting],
-                schemas: [NO_ERRORS_SCHEMA]
-            })
-                .compileComponents();
-        }));
+  describe('Ignoring nested components', () => {
+    let component: NestedComponentTesting;
+    let fixture: ComponentFixture<NestedComponentTesting>;
 
-        beforeEach(() => {
-            fixture = TestBed.createComponent(NestedComponentTesting);
-            component = fixture.componentInstance;
-            fixture.detectChanges();
-        });
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        declarations: [NestedComponentTesting],
+        schemas: [NO_ERRORS_SCHEMA]
+      }).compileComponents();
+    }));
 
-        it('should create', () => {
-            expect(component).toBeTruthy();
-        });
-
+    beforeEach(() => {
+      fixture = TestBed.createComponent(NestedComponentTesting);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
     });
 
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+  });
 });

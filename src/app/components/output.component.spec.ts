@@ -1,21 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-import { Component, Output, EventEmitter } from '@angular/core';
-
-@Component({
-  selector: 'test',
-  template: `<button (click)="doGreet()">Do greet</button>`
-})
-class OutputComponent {
-  @Output() greet: EventEmitter<string> = new EventEmitter<string>();
-
-  doGreet() {
-    this.greet.emit('Hi');
-  }
-}
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { OutputComponent } from './output.component';
 
 describe('OutputComponent', () => {
   let component: OutputComponent;
@@ -24,8 +9,7 @@ describe('OutputComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [OutputComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -48,7 +32,7 @@ describe('OutputComponent', () => {
   });
 
   it('should test the emitter with a simple subscribe', async(() => {
-    component.greet.subscribe((d) => {
+    component.greet.subscribe(d => {
       expect(d).toBe('Hi');
     });
 
@@ -56,11 +40,10 @@ describe('OutputComponent', () => {
   }));
 
   it('should fire the event emitter when triggering an event', async(() => {
-    component.greet.subscribe((d) => {
+    component.greet.subscribe(d => {
       expect(d).toBe('Hi');
     });
 
     fixture.debugElement.triggerEventHandler('greet', <Event>{});
   }));
-
 });

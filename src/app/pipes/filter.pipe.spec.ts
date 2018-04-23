@@ -1,74 +1,68 @@
 import { FilterPipe } from './filter.pipe';
 
 describe('FilterPipe', () => {
+  let filterPipe: FilterPipe;
 
-    let filterPipe: FilterPipe;
+  // synchronous beforeEach
+  beforeEach(() => {
+    filterPipe = new FilterPipe();
+  });
 
-    // synchronous beforeEach
-    beforeEach(() => {
-        filterPipe = new FilterPipe();
-    });
+  it('should be instanciated', () => {
+    expect(filterPipe).toBeDefined();
+  });
 
-    it('should be instanciated', () => {
-        expect(filterPipe).toBeDefined();
-    });
+  it('should return empty array if no items given', () => {
+    const items = null;
 
-    it('should return empty array if no items given', () => {
+    const filtered = filterPipe.transform(items, 'name', 'Hans');
 
-        let items = null;
+    expect(filtered.length).toBe(0);
+    expect(filtered).toEqual([]);
+  });
 
-        let filtered = filterPipe.transform(items, 'name', 'Hans');
+  it('should return items if no field is given', () => {
+    const items = [];
+    items.push({ id: 1, name: 'Hans' });
 
-        expect(filtered.length).toBe(0);
-        expect(filtered).toEqual([]);
-    });
+    const filtered = filterPipe.transform(items, null, 'Hans');
 
-    it('should return items if no field is given', () => {
+    expect(filtered).toEqual(items);
+  });
 
-        let items = [];
-        items.push({ id: 1, name: 'Hans' });
+  it('should return items if no value is given', () => {
+    const items = [];
+    items.push({ id: 1, name: 'Hans' });
 
-        let filtered = filterPipe.transform(items, null, 'Hans');
+    const filtered = filterPipe.transform(items, 'name', null);
 
-        expect(filtered).toEqual(items);
-    });
+    expect(filtered).toEqual(items);
+  });
 
-    it('should return items if no value is given', () => {
+  it('should filter correctly', () => {
+    const items = [];
 
-        let items = [];
-        items.push({ id: 1, name: 'Hans' });
+    items.push({ id: 1, name: 'Hans' });
+    items.push({ id: 2, name: 'Franz' });
+    items.push({ id: 3, name: 'Kurt' });
+    items.push({ id: 4, name: 'Gustav' });
 
-        let filtered = filterPipe.transform(items, 'name', null);
+    const filtered = filterPipe.transform(items, 'name', 'Hans');
 
-        expect(filtered).toEqual(items);
-    });
+    expect(filtered.length).toBeGreaterThan(0);
+    expect(filtered.length).toBe(1);
+  });
 
-    it('should filter correctly', () => {
+  it('should filter two items', () => {
+    const items = [];
 
-        let items = [];
+    items.push({ id: 1, name: 'Hans' });
+    items.push({ id: 2, name: 'Hans' });
+    items.push({ id: 3, name: 'Kurt' });
+    items.push({ id: 4, name: 'Gustav' });
 
-        items.push({ id: 1, name: 'Hans' });
-        items.push({ id: 2, name: 'Franz' });
-        items.push({ id: 3, name: 'Kurt' });
-        items.push({ id: 4, name: 'Gustav' });
+    const filtered = filterPipe.transform(items, 'name', 'Hans');
 
-        let filtered = filterPipe.transform(items, 'name', 'Hans');
-
-        expect(filtered.length).toBeGreaterThan(0);
-        expect(filtered.length).toBe(1);
-    });
-
-    it('should filter two items', () => {
-
-        let items = [];
-
-        items.push({ id: 1, name: 'Hans' });
-        items.push({ id: 2, name: 'Hans' });
-        items.push({ id: 3, name: 'Kurt' });
-        items.push({ id: 4, name: 'Gustav' });
-
-        let filtered = filterPipe.transform(items, 'name', 'Hans');
-
-        expect(filtered.length).toBe(2);
-    });
+    expect(filtered.length).toBe(2);
+  });
 });

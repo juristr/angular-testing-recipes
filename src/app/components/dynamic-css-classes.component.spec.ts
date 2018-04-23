@@ -1,19 +1,7 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-import { Component, Input } from '@angular/core';
-
-@Component({
-  selector: 'test',
-  template: `
-    <div [ngClass]="{ 'alert': isAlert, 'success': !isAlert }"></div>
-  `
-})
-class DynamicCssClassesComponent {
-    @Input() isAlert: boolean = false;
-}
+import { DynamicCssClassesComponent } from './dynamic-css-classes.component';
 
 describe('DynamicCssClassesComponent', () => {
   let component: DynamicCssClassesComponent;
@@ -22,8 +10,7 @@ describe('DynamicCssClassesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DynamicCssClassesComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -36,12 +23,11 @@ describe('DynamicCssClassesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  
   it('should have the .alert class if isAlert is set to true', () => {
     component.isAlert = true;
     fixture.detectChanges();
 
-    let classes:any = fixture.debugElement.query(By.css('div')).classes;
+    let classes: any = fixture.debugElement.query(By.css('div')).classes;
     expect(classes.alert).toBeTruthy();
     expect(classes.success).toBeFalsy();
   });
@@ -50,9 +36,8 @@ describe('DynamicCssClassesComponent', () => {
     component.isAlert = false;
     fixture.detectChanges();
 
-    let classes:any = fixture.debugElement.query(By.css('div')).classes;
+    let classes: any = fixture.debugElement.query(By.css('div')).classes;
     expect(classes.success).toBeTruthy();
     expect(classes.alert).toBeFalsy();
   });
-    
 });
