@@ -9,7 +9,7 @@ import { RemoteService } from './remote.service';
 
 describe('RemoteService', () => {
   let service: RemoteService;
-  let httpMock;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
