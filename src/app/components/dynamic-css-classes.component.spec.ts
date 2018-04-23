@@ -10,7 +10,7 @@ describe('DynamicCssClassesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DynamicCssClassesComponent]
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {

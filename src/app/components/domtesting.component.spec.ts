@@ -10,7 +10,7 @@ describe('DomTestingComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DomTestingComponent]
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {

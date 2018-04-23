@@ -11,7 +11,7 @@ describe('Async Compnent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AsyncComponent]
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {

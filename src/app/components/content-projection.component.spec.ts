@@ -22,7 +22,7 @@ describe('ContentProjectionComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent, CollapsiblePanelComponent]
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {

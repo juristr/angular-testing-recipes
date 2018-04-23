@@ -12,7 +12,7 @@ describe('DynamicStylesComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [DynamicStylesComponent]
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {

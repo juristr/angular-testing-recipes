@@ -9,7 +9,7 @@ describe('OutputComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [OutputComponent]
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {
