@@ -40,6 +40,13 @@ describe('The App Routing (with custom cmp)', () => {
     location = TestBed.get(Location) as Location;
   });
 
+  it('should properly redirect to home initially', async(() => {
+    router.navigate(['']);
+    routingComponentFixture.whenStable().then(() => {
+      expect(location.path()).toBe('/home');
+    });
+  }));
+
   it(
     'should properly navigate back from search to home again',
     fakeAsync(() => {
