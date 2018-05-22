@@ -9,4 +9,8 @@ export class RemoteService {
   fetchViaHttp(): Observable<any> {
     return this.http.get('/someendpoint/people.json');
   }
+
+  throwingError() {
+    throw new Error('Should be mocked');
+  }
 }

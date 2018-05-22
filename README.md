@@ -43,6 +43,8 @@ All the scenarios are listed here below and nicely linked to the source file.
       _Learn how to test async operations using the `async()` as well as `fakeAsync()` functions._
     * [Mocking and remote http calls](./src/app/services/remote.service.spec.ts)
       _Learn how to mock external dependencies, such as use the `MockBackend` provided by Angular to respond to http calls._
+    * [Mocking remote calls with Jasmine spies](./src/app/services/remote.service.fake-call.spec.ts)
+      _Fake the call by using Jasmine spies._
 1.  [**Testing Pipes**](./src/app/pipes)
     * [custom filter pipe](./src/app/pipes/filter.pipe.spec.ts)
     * [async pipes within templates](./src/app/components/async-stream.component.spec.ts)  
