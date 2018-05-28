@@ -19,7 +19,7 @@ All the scenarios are listed here below and nicely linked to the source file.
 
 1.  [**Testing Components**](./src/app/components)
     * [testing @Input](./src/app/components/input.component.spec.ts)  
-      _Learn how to a component's `@Input()`._
+      _Learn how to test a component's `@Input()`._
     * [testing @Output](./src/app/components/output.component.spec.ts)  
       _Learn how to test a component's `@Output()`, more specifically the `EventEmitter` type._
     * [testing timers inside components](./src/app/components/counter.component.spec.ts)  
