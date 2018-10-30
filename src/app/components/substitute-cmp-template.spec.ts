@@ -40,13 +40,13 @@ describe('MessageComponent', () => {
       providers: [MessageService]
     });
 
-    // const messageService = TestBed.get(MessageService) as MessageService;
-    // spyOn(messageService, 'getMessage').and.returnValue('Ciao');
-
     fixture = createGenericTestComponent<MessageComponent>(
       MessageComponent,
       '<span *ngIf="message">{{message}}</span>'
     );
+
+    // const messageService = TestBed.get(MessageService) as MessageService;
+    // spyOn(messageService, 'getMessage').and.returnValue('Ciao');
 
     fixture.detectChanges();
   });
