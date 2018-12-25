@@ -49,7 +49,6 @@ describe('FilterPipe', () => {
 
     const filtered = filterPipe.transform(items, 'name', 'Hans');
 
-    expect(filtered.length).toBeGreaterThan(0);
     expect(filtered.length).toBe(1);
   });
 
