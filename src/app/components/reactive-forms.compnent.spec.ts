@@ -30,7 +30,7 @@ describe('Component: ReactiveForms', () => {
 
     it('name field validity', () => {
         let errors = {};
-        let name = component.form.controls['name'];
+        let name = component.form.get('name');
         expect(name.valid).toBeFalsy();
 
         errors = name.errors || {};
@@ -56,7 +56,7 @@ describe('Component: ReactiveForms', () => {
 
     it('email field validity', () => {
         let errors = {};
-        let email = component.form.controls['email'];
+        let email = component.form.get('email');
         expect(email.valid).toBeFalsy();
 
         errors = email.errors || {};
@@ -75,7 +75,7 @@ describe('Component: ReactiveForms', () => {
 
     it('password field validity', () => {
         let errors = {};
-        let password = component.form.controls['password'];
+        let password = component.form.get('password');
 
         errors = password.errors || {};
         expect(errors['required']).toBeTruthy();
@@ -94,8 +94,8 @@ describe('Component: ReactiveForms', () => {
     it('confirm password field validity', () => {
         let passwordErrors = {};
         let confirmPasswordErrors = {};
-        let password = component.form.controls['password'];
-        let confirmPassword = component.form.controls['confirmPassword'];
+        let password = component.form.get('password');
+        let confirmPassword = component.form.get('confirmPassword');
 
         password.setValue("Qwertyui9!");
         passwordErrors = password.errors || {};
@@ -119,10 +119,10 @@ describe('Component: ReactiveForms', () => {
 
     it('submitting a form emits a user', () => {
         expect(component.form.valid).toBeFalsy();
-        component.form.controls['name'].setValue("John Doe");
-        component.form.controls['email'].setValue("xyz@test.com");
-        component.form.controls['password'].setValue("Qwertyui9!");
-        component.form.controls['confirmPassword'].setValue("Qwertyui9!");
+        component.form.get('name').setValue("John Doe");
+        component.form.get('email').setValue("xyz@test.com");
+        component.form.get('password').setValue("Qwertyui9!");
+        component.form.get('confirmPassword').setValue("Qwertyui9!");
         expect(component.form.valid).toBeTruthy();
 
         let user: User;
