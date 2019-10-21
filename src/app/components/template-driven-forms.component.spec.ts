@@ -3,7 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { TemplateDrivenFormsComponent, UserLogin } from "./template-driven-forms.component";
 
 
-describe('Component: ReactiveForms', () => {
+describe('Component: TemplateDrivenFormsComponent', () => {
 
     let component: TemplateDrivenFormsComponent;
     let fixture: ComponentFixture<TemplateDrivenFormsComponent>;
