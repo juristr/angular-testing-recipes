@@ -49,6 +49,11 @@ All the scenarios are listed here below and nicely linked to the source file.
     * [custom filter pipe](./src/app/pipes/filter.pipe.spec.ts)
     * [async pipes within templates](./src/app/components/async-stream.component.spec.ts)  
       _Shows how to correctly resolve async pipes and then verify they properly render in the HTML_
+1.  [**Testing Custom Directives**](./src/app/directives)
+    * [custom email Validator directive](./src/app/directives/emailvalidator.spec.ts)
+      _Testing Custom Email Validator directive for template driven form_
+    * [update on hover directive](./src/app/directives/updateonhover.directive.spec.ts)
+      _Testing simple custom directive which makes use of HostListener and HostBinding_
 1.  [**Custom Matchers and Utilities**](./src/app/utils)
     * [Create your own custom Jasmine matchers](./src/app/utils/custom-matchers.ts)
 
